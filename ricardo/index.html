@@ -11,6 +11,70 @@
             box-sizing: border-box;
         }
 
+        button.save-button {
+    border: none;
+    cursor: pointer;
+}
+
+.dialog-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+}
+
+.dialog-box {
+    width: 100%;
+    max-width: 340px;
+    background: white;
+    border-radius: 16px;
+    padding: 26px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.dialog-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #17365d;
+    margin-bottom: 8px;
+}
+
+.dialog-text {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 24px;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.dialog-button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.no-button {
+    background: #e5e7eb;
+    color: #333;
+}
+
+.yes-button {
+    background: #17365d;
+    color: white;
+}
+
         body {
             margin: 0;
             min-height: 100vh;
@@ -144,11 +208,39 @@
             </a>
         </div>
 
-        <a
-            class="save-button"
-            href="ricardo.vcf">
-            Save Contact
-        </a>
+       <button
+    class="save-button"
+    onclick="showContactDialog()">
+    Save Contact
+</button>
+
+<div id="contactDialog" class="dialog-overlay">
+    <div class="dialog-box">
+
+        <div class="dialog-title">
+            This is a contact.
+        </div>
+
+        <div class="dialog-text">
+            Would you like to save it?
+        </div>
+
+        <div class="dialog-buttons">
+            <button
+                class="dialog-button no-button"
+                onclick="closeContactDialog()">
+                No
+            </button>
+
+            <button
+                class="dialog-button yes-button"
+                onclick="saveContact()">
+                Yes
+            </button>
+        </div>
+
+    </div>
+</div>
 
         <div class="footer">
             CuttingTech LLC
@@ -156,5 +248,19 @@
 
     </div>
 
+<script>
+function showContactDialog() {
+    document.getElementById("contactDialog").style.display = "flex";
+}
+
+function closeContactDialog() {
+    document.getElementById("contactDialog").style.display = "none";
+}
+
+function saveContact() {
+    window.location.href = "ricardo.vcf";
+}
+</script>
+    
 </body>
 </html>
